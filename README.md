@@ -21,22 +21,22 @@ Important: décompresser l'archive magasins.tar.gz à la racine de votre répert
 résultat : /home/USER/magasins/
 
 ## Usage
-'*AJOUTE*ALDI (*)==echo "[ ] (1)" >> ~/magasins/aldi.txt && say "j'ai rajouté (1) chez aldi"
-...' etc
+*AJOUTE*ALDI (*)==echo "[ ] (1)" >> ~/magasins/aldi.txt && say "j'ai rajouté (1) chez aldi"
+... etc
 
-'*EFFACE*ALDI==say "Veux tu confirmer la supression de la liste d'aldi?"
+*EFFACE*ALDI==say "Veux tu confirmer la supression de la liste d'aldi?"
 >*OUI*==echo "" > ~/magasins/aldi.txt && say "Ok la liste d'aldi est réinitialisée" && echo "" >> ~/magasins/aldi.txt && echo "[ ] CHEZ ALDI:" >> ~/magasins/aldi.txt && echo "" >> ~/magasins/aldi.txt
 >*NON*==say "Je ne la supprime pas"
-...' etc
+... etc
 
-'*QUOI*DANS*ALDI==say "$(cat ~/magasins/aldi.txt)"
-...' etc
+*QUOI*DANS*ALDI==say "$(cat ~/magasins/aldi.txt)"
+... etc
 
-'*QUOI*DANS*COUR*==cat ~/magasins/trafic.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/colruyt.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/lidl.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/aldi.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/carrefour.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/makro.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/cora.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/solderie.txt >> ~/magasins/listecourses.txt && say "$(cat ~/magasins/listecourses.txt)" ;say "la liste est-elle complète?"
+*QUOI*DANS*COUR*==cat ~/magasins/trafic.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/colruyt.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/lidl.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/aldi.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/carrefour.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/makro.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/cora.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/solderie.txt >> ~/magasins/listecourses.txt && say "$(cat ~/magasins/listecourses.txt)" ;say "la liste est-elle complète?"
 >*NON*==say "OK, complète la liste de courses quand tu veux $username"
 >*OUI*==say "faut-il l'imprimer?"
 >>*NON*==say "OK $username, je ne l'imprime pas"
->>*OUI*==say "OK, je te l'imprime de suite" && lpr <<< cat ~/magasins/listecourses.txt ; say "l'impression est en cours $usename !" '
+>>*OUI*==say "OK, je te l'imprime de suite" && lpr <<< cat ~/magasins/listecourses.txt ; say "l'impression est en cours $usename !" 
 
 You: ajoute chez aldi du pain
 Jarvis: j'ai rajouté du pain chez aldi
