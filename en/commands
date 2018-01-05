@@ -1,6 +1,49 @@
-*AJOUTE (*) A LA LISTE*==echo "(1)" >> ~/listedescourses.txt && say "J'ai ajouté (1) à la liste"
-*SUPPRIME*LA LISTE*|*VIDE*LA LISTE*==say "Veux tu confirmer la supression de la liste des courses?"
->*OUI*==echo "" > ~/listedescourses.txt && say "Ok la liste est effacée"
+*AJOUTE*ALDI (*)==echo "[ ] (1)" >> ~/magasins/aldi.txt && say "j'ai rajouté (1) chez aldi"
+*AJOUTE*LIDL (*)==echo "[ ] (1)" >> ~/magasins/lidl.txt && say "j'ai rajouté (1) chez lidl"
+*AJOUTE*CARREFOUR (*)==echo "[ ] (1)" >> ~/magasins/carrefour.txt && say "j'ai rajouté (1) chez carrefour"
+*AJOUTE*COLRUYT (*)==echo "[ ] (1)" >> ~/magasins/colruyt.txt && say "j'ai rajouté (1) chez colruyt"
+*AJOUTE*TRAFIC (*)==echo "[ ] (1)" >> ~/magasins/trafic.txt && say "j'ai rajouté (1) chez trafic"
+*AJOUTE*MA* (*)==echo "[ ] (1)" >> ~/magasins/makro.txt && say "j'ai rajouté (1) chez makro"
+*AJOUTE*SOLDERI* (*)==echo "[ ] (1)" >> ~/magasins/solderie.txt && say "j'ai rajouté (1) chez lediscount"
+*AJOUTE*CORA (*)==echo "[ ] (1)" >> ~/magasins/cora.txt && say "j'ai rajouté (1) chez cora"
+*EFFACE*ALDI==say "Veux tu confirmer la supression de la liste d'aldi?"
+>*OUI*==echo "" > ~/magasins/aldi.txt && say "Ok la liste d'aldi est réinitialisée" && echo "" >> ~/magasins/aldi.txt && echo "[ ] CHEZ ALDI:" >> ~/magasins/aldi.txt && echo "" >> ~/magasins/aldi.txt
 >*NON*==say "Je ne la supprime pas"
-*LIS LA LISTE*|*QUOI*DANS*LA*LIS*COUR*==say "elle contient $(cat ~/listedescourses.txt)"
-*ENVOI*LA*LIST*MAIL*==mpack -s "Contenu de la liste des courses" /home/pi/listedescourses.txt VOTREMAIL@hotmail.com && say "La liste des courses a été envoyer à VOTREPRENOM"
+*EFFACE*LIDL==say "Veux tu confirmer la supression de la liste de lidl?"
+>*OUI*==echo "" > ~/magasins/lidl.txt && say "Ok la liste de lidl est réinitialisée" && echo "" >> ~/magasins/lidl.txt && echo "[ ] CHEZ LIDL:" >> ~/magasins/lidl.txt && echo "" >> ~/magasins/lidl.txt
+>*NON*==say "Je ne la supprime pas"
+*EFFACE*CARREFOUR==say "Veux tu confirmer la supression de la liste de carrefour?"
+>*OUI*==echo "" > ~/magasins/carrefour.txt && say "Ok la liste de carrefour est réinitialisée" && echo "" >> ~/magasins/carrefour.txt && echo "[ ] CHEZ CARREFOUR:" >> ~/magasins/carrefour.txt && echo "" >> ~/magasins/carrefour.txt
+*EFFACE*COLRUYT==say "Veux tu confirmer la supression de la liste de colruyt?"
+>*OUI*==echo "" > ~/magasins/colruyt.txt && say "Ok la liste de colruyt est réinitialisée" && echo "" >> ~/magasins/colruyt.txt && echo "[ ] CHEZ COLRUYT:" >> ~/magasins/colruyt.txt && echo "" >> ~/magasins/colruyt.txt
+>*NON*==say "Je ne la supprime pas"
+*EFFACE*TRAFIC==say "Veux tu confirmer la supression de la liste de trafic?"
+>*OUI*==echo "" > ~/magasins/trafic.txt && say "Ok la liste de trafic est réinitialisée" && echo "" >> ~/magasins/trafic.txt && echo "[ ] CHEZ TRAFIC:" >> ~/magasins/trafic.txt && echo "" >> ~/magasins/trafic.txt
+>*NON*==say "Je ne la supprime pas"
+*EFFACE*MA*==say "Veux tu confirmer la supression de la liste de makro?"
+>*OUI*==echo "" > ~/magasins/makro.txt && say "Ok la liste de makro est réinitialisée" && echo "" >> ~/magasins/makro.txt && echo "[ ] CHEZ MAKRO:" >> ~/magasins/makro.txt && echo "" >> ~/magasins/makro.txt
+>*NON*==say "Je ne la supprime pas"
+*EFFACE*SOLDERI*==say "Veux tu confirmer la supression de la liste de lediscount?"
+>*OUI*==echo "" > ~/magasins/solderie.txt && say "Ok la liste de lediscount est réinitialisée" && echo "" >> ~/magasins/solderie.txt && echo "[ ] CHEZ LEDISCOUNT:" >> ~/magasins/solderie.txt && echo "" >> ~/magasins/solderie.txt
+>*NON*==say "Je ne la supprime pas"
+*EFFACE*CORA==say "Veux tu confirmer la supression de la liste de cora?"
+>*OUI*==echo "" > ~/magasins/cora.txt && say "Ok la liste de cora est réinitialisée" && echo "" >> ~/magasins/cora.txt && echo "[ ] CHEZ CORA:" >> ~/magasins/cora.txt && echo "" >> ~/magasins/cora.txt
+>*NON*==say "Je ne la supprime pas"
+*EFFACE*COUR*==say "Veux tu confirmer la supression de la liste des courses?"
+>*OUI*==echo "" > ~/magasins/listecourses.txt && say "Ok la liste de courses est réinitialisée" && echo "LISTE DE COURSES DU JOUR:" > ~/magasins/listecourses.txt && echo "" >> ~/magasins/listecourses.txt
+>*NON*==say "Je ne la supprime pas"
+*QUOI*DANS*ALDI==say "$(cat ~/magasins/aldi.txt)"
+*QUOI*DANS*LIDL==say "$(cat ~/magasins/lidl.txt)"
+*QUOI*DANS*COLRUYT==say "$(cat ~/magasins/colruyt.txt)"
+*QUOI*DANS*TRAFIC==say "$(cat ~/magasins/trafic.txt)"
+*QUOI*DANS*CARREFOUR==say "$(cat ~/magasins/carrefour.txt)"
+*QUOI*DANS*MA*==say "$(cat ~/magasins/makro.txt)"
+*QUOI*DANS*SOLDERI*==say "$(cat ~/magasins/solderie.txt)"
+*QUOI*DANS*CORA==say "$(cat ~/magasins/cora.txt)"
+*QUOI*DANS*COUR*==cat ~/magasins/trafic.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/colruyt.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/lidl.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/aldi.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/carrefour.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/makro.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/cora.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/solderie.txt >> ~/magasins/listecourses.txt && say "$(cat ~/magasins/listecourses.txt)" ;say "la liste est-elle complète?"
+>*NON*==say "OK, complète la liste de courses quand tu veux $username"
+>*OUI*==say "faut-il l'imprimer?"
+>>*NON*==say "OK $username, je ne l'imprime pas"
+>>*OUI*==say "OK, je te l'imprime de suite" && lpr <<< cat ~/magasins/listecourses.txt ; say "l'impression est en cours $usename !"
+
+
