@@ -9,49 +9,96 @@ For multi-language plugin:
 - clone the language directory and translate commands/functions.sh
 - optionally write the Description / Usage sections in several languages
 -->
-## Tuto pour pouvoir utilisé mpack
-Il faut aussi installer ssmtp :
-`sudo apt-get install ssmpt`
-Ouvrir le fichier ssmtp.conf:
-`nano /etc/ssmpt/ssmtp.conf`
-Puis le configurer en ajoutant c'est quelques lignes avec vos infos (là c'est pour gmail):
-root=adresse@gmail.com
-mailhub=smtp.gmail.com:587
-hostname=raspberry
-AuthUser=adresse@gmail.com
-AuthPass=MotDePasseGmail
-FromLineOverride=YES
-UseSTARTTLS=YES
-Puis sauvegarder : Ctrl+X puis O pour oui et entrer
+## LISTE DE COURSES IMPRIMABLE !
 
 ## Description
-Gestion de la liste des courses
+Gestion de liste de courses basée sur plusieurs magasins 
 
-Pensez à modifier "VOTREEMAIL" et "VOTREPRENOM"
+Imprimera au final une liste complète de courses classées par magasins! 
+Pas d'envois sur email dans cette version !! mais peux être ajouté en option en ajoutant les commandes originales ;-)
+
+Important: décompresser l'archive magasins.tar.gz à la racine de votre répertoire personnel:
+résultat : /home/USER/magasins/
 
 ## Usage
-```
-`*AJOUTE (*) A LA LISTE*==echo "(1)" >> ~/listedescourses.txt && say "J'ai ajouté (1) à la liste"`
-`*SUPPRIME*LA LISTE*|*VIDE*LA LISTE*==say "Veux tu confirmer la supression de la liste des courses?"`
-`>*OUI*==echo "" > ~/listedescourses.txt && say "Ok la liste est effacée"`
-`>*NON*==say "Je ne la supprime pas"`
-`*LIS LA LISTE*|*QUOI*DANS*LA*LIS*COUR*==say "elle contient $(cat ~/listedescourses.txt)"`
-`*ENVOI*LA*LIST*MAIL*==mpack -s "Contenu de la liste des courses" /home/pi/listedescourses.txt VOTREMAIL@hotmail.com && say "La liste des courses a été envoyer à VOTREPRENOM"`
+'*AJOUTE*ALDI (*)==echo "[ ] (1)" >> ~/magasins/aldi.txt && say "j'ai rajouté (1) chez aldi"
+...' etc
 
-You: Ajoute du pain à la liste des courses
-Jarvis: J'ai ajouté du pain à la liste
-You: Supprime la liste des courses
-Jarvis: Veux tu confirmer la supression de la liste des courses?
-You: Oui
-Jarvis: Ok la liste est effacée
-ou
-You: Non
-Jarvis: Je ne la supprime pas
-You: Lis la liste des courses
-Jarvis: elle contient du pain
-You: Envoi moi la liste des courses
-Jarvis: La liste des courses a été envoyer à VOTREPRENOM
+'*EFFACE*ALDI==say "Veux tu confirmer la supression de la liste d'aldi?"
+>*OUI*==echo "" > ~/magasins/aldi.txt && say "Ok la liste d'aldi est réinitialisée" && echo "" >> ~/magasins/aldi.txt && echo "[ ] CHEZ ALDI:" >> ~/magasins/aldi.txt && echo "" >> ~/magasins/aldi.txt
+>*NON*==say "Je ne la supprime pas"
+...' etc
+
+'*QUOI*DANS*ALDI==say "$(cat ~/magasins/aldi.txt)"
+...' etc
+
+'*QUOI*DANS*COUR*==cat ~/magasins/trafic.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/colruyt.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/lidl.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/aldi.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/carrefour.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/makro.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/cora.txt >> ~/magasins/listecourses.txt ; cat ~/magasins/solderie.txt >> ~/magasins/listecourses.txt && say "$(cat ~/magasins/listecourses.txt)" ;say "la liste est-elle complète?"
+>*NON*==say "OK, complète la liste de courses quand tu veux $username"
+>*OUI*==say "faut-il l'imprimer?"
+>>*NON*==say "OK $username, je ne l'imprime pas"
+>>*OUI*==say "OK, je te l'imprime de suite" && lpr <<< cat ~/magasins/listecourses.txt ; say "l'impression est en cours $usename !" '
+
+You: ajoute chez aldi du pain
+Jarvis: j'ai rajouté du pain chez aldi
+You: ajoute chez carrefour pizza
+Jarvis: j'ai rajouté pizza chez carrefour
+You: il y a quoi dans aldi
+Jarvis: [ ] CHEZ ALDI:
+jarvis:
+Jarvis: [ ] du pain
+You: y'a quoi dans la liste de courses
+Jarvis: LISTE DE COURSES DU JOUR:
+Jarvis: 
+Jarvis: 
+Jarvis: 
+Jarvis: [ ] CHEZ TRAFIC:
+Jarvis: 
+Jarvis: 
+Jarvis: 
+Jarvis: [ ] CHEZ COLRUYT:
+Jarvis: 
+Jarvis: 
+Jarvis: 
+Jarvis: [ ] CHEZ LIDL:
+Jarvis: 
+Jarvis: 
+Jarvis: 
+Jarvis: [ ] CHEZ ALDI:
+Jarvis: 
+Jarvis: [ ] du pain
+Jarvis: 
+Jarvis: 
+Jarvis: [ ] CHEZ CARREFOUR:
+Jarvis: 
+Jarvis: [ ] pizza
+Jarvis: 
+Jarvis: 
+Jarvis: [ ] CHEZ MAKRO:
+Jarvis: 
+Jarvis: 
+Jarvis: 
+Jarvis: [ ] CHEZ CORA:
+Jarvis: 
+Jarvis: 
+Jarvis: 
+Jarvis: [ ] CHEZ LEDISCOUNT:
+Jarvis: la liste est-elle complète?
+*NON*			*OUI*
+You: non
+Jarvis: OK, complète la liste de courses quand tu veux You
+...
+Jarvis: la liste est-elle complète?
+*NON*			*OUI*
+You: oui
+Jarvis: faut-il l'imprimer?
+*NON*			*OUI*
+You: oui
+Jarvis: OK, je te l'imprime de suite
+Jarvis: l'impression est en cours  !
+
+
 ```
+
 
 ## Author
 [tchoul] et [godinperson] (https://github.com/tchoul)
